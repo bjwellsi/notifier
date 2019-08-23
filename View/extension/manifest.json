@@ -2,7 +2,7 @@
     "name": "notifier",
     "version": "1.0",
     "description": "Notify me",
-    "permissions": ["storage"],
+    "permissions": ["storage", "notifications"],
     "background": {
        "scripts": ["background.js"],
        "persistent": false
