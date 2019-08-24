@@ -2,7 +2,7 @@
   "name": "notifier",
   "version": "1.0.0",
   "description": "Notifies user with stored quotes whenever their page has been running for a given time",
-  "main": "index.js",
+  "main": "Model/accessData.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bjwellsi/notifier/issues"
   },
-  "homepage": "https://github.com/bjwellsi/notifier#readme"
+  "homepage": "https://github.com/bjwellsi/notifier#readme",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
 }
