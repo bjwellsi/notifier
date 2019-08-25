@@ -6,12 +6,21 @@ let cors = require('cors');
 app.use(cors());
 
 app.get('/getQuote', async (req, res) => {
+    //randomly sends a quote from the user's list
+    //right now it's just a random quote, eventually 
+    //it would be nice to bias the randomness toward 
+    //quotes that haven't been said in a minute
     let qc = new queries();
     try {
         const results = await qc.getQuotes(req.query.username);
-        //this isn't sufficient to send back, make it random 
         qc.close();
-        return res.send(results[0].quote);
+        let r = Math.floor(Math.random()*results.length);
+        return res.send(
+            {
+                quote: results[r].quote,
+                author: results[r].author
+
+            });
     } catch (err) {
         qc.close()
         console.log(err);
