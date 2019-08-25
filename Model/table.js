@@ -88,4 +88,4 @@ class TableQuerys {
     }
 }
 
-module.exports = TableQuerys;
+module.exports = TableQ uerys;
