@@ -9,17 +9,17 @@
     <h1>Create Account</h1>
     <form id="account info">
         <label for="username">Username:</lable>
-        <input type="text" id="username" name="username" pattern=[0-9a-zA-Z]>
+        <input type="text" id="username" name="username" pattern=[0-9a-zA-Z] required="required">
         <input type="button" id="check user" value="Check Availability">
         <label for="check user" id="valid user"></label>
         <br>
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email">
+        <input type="text" id="email" name="email" required="required">
         <input type="button" id="check email" value="Check Availability">
         <label for="check email" id="valid email"></label>
         <br>
         <label for="password">Password:</label>
-        <input type="password" id="pass" name="pass">
+        <input type="password" id="pass" name="pass" required="required">
         <input type="button" id="check pass" value="Check Validity">
         <label for="check pass" id="valid pass"></label>
         <br>
