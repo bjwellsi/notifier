@@ -71,6 +71,10 @@ class TableQuerys {
         return this.exists('username', name, 'users');
     }
 
+    emailExists(email) {
+        return this.exists('email', email, 'users');
+    }
+
     createUser(username, email, password) {
         let inserts = ['users', 'username, email, password', `'${username}', '${email}', '${password}'`];
         this.connection.query(mysql.format(this.add, inserts), (err, results) => {

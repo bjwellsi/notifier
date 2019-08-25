@@ -16,10 +16,25 @@ checkUser.addEventListener("click", () => {
         .then((response) => {
             response.json()
                 .then((data) => {
-                    if (data.length > 0 && !data.exists) {
+                    if (!data.exists) {
                         validUser.innerHTML = "Available!"
                     } else{
                         validUser.innerHTML = "Unavailable!"
+                    }
+                });
+        });
+});
+
+checkEmail.addEventListener("click", () => {
+    //todo: validate email format
+    fetch('http://localhost:8080/checkEmail/?email=' + email.value)
+        .then((response) => {
+            response.json()
+                .then((data) => {
+                    if (!data.exists) {
+                        validEmail.innerHTML = "Available!"
+                    } else{
+                        validEmail.innerHTML = "Unavailable!"
                     }
                 });
         });

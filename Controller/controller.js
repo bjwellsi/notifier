@@ -40,6 +40,19 @@ app.get('/checkUser', async (req, res) => {
     }
 })
 
+app.get('/checkEmail', async (req, res) => {
+    //validates the username for account creation
+    let qc = new queries();
+    try {
+        const results = await qc.emailExists(req.query.email);
+        qc.close();
+        return res.send({ exists: results });
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})
+
 app.listen(8080, () => {
     console.log('Listening on 8080...');
 })
