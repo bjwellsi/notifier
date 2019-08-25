@@ -1,12 +1,8 @@
 const mysql = require('mysql');
-
-
-
-
-class tableQuerys {
+class TableQuerys {
     constructor() {
         this.query = "SELECT ?? FROM ?? WHERE ?? = ?";
-        this.add = "INSERT INTO ?? (??) ADD (??);"
+        this.add = "INSERT INTO ?? (??) VALUES (??);"
         this.edit = "UPDATE ?? SET ?? = ?? WHERE "
 
         this.connection = mysql.createConnection({
@@ -32,20 +28,25 @@ class tableQuerys {
     getUser(username) {
         //let query = "SELECT * FROM users WHERE username = '" + username +"';";
         let inserts = ['*', 'users', 'username', username];
-        this.connection.query(mysql.format(this.query, inserts), (err, result) => {
-            if (err) throw err;
-            console.log(result);
+        return new Promise((res, rej) => {
+            this.connection.query(mysql.format(this.query, inserts), (err, result) => {
+                if (err) rej(err);
+                res(result);
+            });
         });
     }
 
-    getQuotes(username) {
+    async getQuotes(username) {
         //let query = "SELECT * FROM quotes WHERE username = '" + username +"';";
         let inserts = ['*', 'quotes', 'username', username];
-        this.connection.query(mysql.format(this.query, inserts), (err, result) => {
-            if (err) throw err;
-            console.log(result);
+        return new Promise((res, rej) => {
+            this.connection.query(mysql.format(this.query, inserts), (err, result) => {
+                if (err) rej(err);
+                res(result);
+            });
         });
     }
+
 
     createUser(username, email, password) {
         let inserts = ['users', 'username, email, password', `'${username}', '${email}', '${password}'`];
@@ -56,17 +57,12 @@ class tableQuerys {
     }
 
     addQuote(username, quote, author) {
-        let inserts = ['quotes', 'username, quote, author', `'${username}', '${quote}', '${author}'`];
-        this.connection.query(mysql.format(this.add, inserts), (err, results) => {
+        let inserts = `INSERT INTO quotes (username, quote, author) VALUES ('${username}', '${quote}', '${author}');`;
+        this.connection.query(inserts, (err) => {
             if (err) throw err;
             console.log(results);
         })
     }
 }
 
-let tc = new tableQuerys();
-
-tc.getUser('me, bitch');
-tc.getQuotes('me, bitch');
-
-tc.close();
+module.exports = TableQuerys;

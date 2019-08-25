@@ -9,6 +9,7 @@ CREATE TABLE quotes (
 username VARCHAR(255) NOT NULL,
 qid INT UNIQUE NOT NULL AUTO_INCREMENT,
 quote VARCHAR(255) NOT NULL,
+author VARCHAR(255),
 Primary Key(qid),
 Foreign Key(username) REFERENCES users(username)
 ) ENGINE=INNODB;
