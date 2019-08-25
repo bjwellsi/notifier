@@ -4,6 +4,11 @@ if (window.Notification) {
 };
 
 function display() {
+  let interval = 10000;
+  //eventually want this to worker, get interval from storage
+  /*chrome.storage.sync.get('timer', (data) =>{
+    interval = data.timer;
+  })*/
   setInterval(() => {
     //await a notification
     fetch('http://localhost:8080/getQuote/?username=me').then((response) => {
@@ -20,7 +25,6 @@ function display() {
           title: data.author
         });
       });
-
     });
-  }, 1000)
+  }, interval)
 }

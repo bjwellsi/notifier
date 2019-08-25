@@ -14,7 +14,7 @@ app.get('/getQuote', async (req, res) => {
     try {
         const results = await qc.getQuotes(req.query.username);
         qc.close();
-        let r = Math.floor(Math.random()*results.length);
+        let r = Math.floor(Math.random() * results.length);
         return res.send(
             {
                 quote: results[r].quote,
@@ -27,24 +27,21 @@ app.get('/getQuote', async (req, res) => {
     }
 })
 
+app.get('/checkUser', async (req, res) => {
+    //validates the username for account creation
+    let qc = new queries();
+    try {
+        const results = await qc.userExists(req.query.name);
+        qc.close();
+        return res.send({ exists: results });
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})
+
 app.listen(8080, () => {
     console.log('Listening on 8080...');
 })
-
-/*
-let qc = new queries();
-
-
-let bob = async () => {
-    try {
-        const res = await qc.getQuotes('me, bitch');
-        console.log(res[0].quote);
-        qc.close();
-    } catch (err) {
-        throw err;
-    }
-}
-bob();
-*/
 
 

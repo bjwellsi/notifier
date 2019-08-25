@@ -36,7 +36,7 @@ class TableQuerys {
         });
     }
 
-    async getQuotes(username) {
+    getQuotes(username) {
         //let query = "SELECT * FROM quotes WHERE username = '" + username +"';";
         let inserts = ['*', 'quotes', 'username', username];
         return new Promise((res, rej) => {
@@ -47,6 +47,29 @@ class TableQuerys {
         });
     }
 
+    async exists(field, value, table) {
+        try {
+            let inserts = ['*', table, field, value];
+            return new Promise((res, rej) => {
+                this.connection.query(mysql.format(this.query, inserts), (err, results) => {
+                    if (err) rej(err);
+                    res(results);
+                })
+            }).then((data) => {
+                if (data.length > 0)
+                    return true;
+                return false;
+            }).catch((err) => {
+                throw err;
+            })
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    userExists(name) {
+        return this.exists('username', name, 'users');
+    }
 
     createUser(username, email, password) {
         let inserts = ['users', 'username, email, password', `'${username}', '${email}', '${password}'`];
