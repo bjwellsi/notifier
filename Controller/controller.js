@@ -27,11 +27,11 @@ app.get('/getQuote', async (req, res) => {
     }
 })
 
-app.get('/checkUser', async (req, res) => {
+app.get('/checkuser', async (req, res) => {
     //validates the username for account creation
     let qc = new queries();
     try {
-        const results = await qc.userExists(req.query.name);
+        const results = await qc.userExists(req.query.user);
         qc.close();
         return res.send({ exists: results });
     } catch (err) {
@@ -40,7 +40,7 @@ app.get('/checkUser', async (req, res) => {
     }
 })
 
-app.get('/checkEmail', async (req, res) => {
+app.get('/checkemail', async (req, res) => {
     //validates the username for account creation
     let qc = new queries();
     try {

@@ -9,34 +9,61 @@ const validUser = document.getElementById("valid user");
 const validEmail = document.getElementById("valid email");
 const validPass = document.getElementById("valid pass");
 
-//^checkPass does nothing for now
-//asyncronously check the username and email as valid 
-checkUser.addEventListener("click", () => {
-    fetch('http://localhost:8080/checkUser/?name=' + user.value)
+//eventually check the password as valid
+//check the username and email as valid 
+function unique(field, fieldName){
+    fetch(`http://localhost:8080/check${fieldName}/?${fieldName}=${field.value}`)
         .then((response) => {
             response.json()
                 .then((data) => {
-                    if (!data.exists) {
-                        validUser.innerHTML = "Available!"
-                    } else{
-                        validUser.innerHTML = "Unavailable!"
-                    }
+                    return !data.exists;
                 });
         });
+}
+
+function validateUser(){
+    return unique(user, "user");
+}
+
+function validateEmail(){
+    //todo: validate email format
+    return unique(email, "email");
+}
+
+function validatePassword(){
+    //todo, fill in
+    return true;
+}
+
+//validate the user on check button click
+checkUser.addEventListener("click", () => {
+    if (validateUser()) {
+        validUser.innerHTML = "Available!"
+    } else{
+        validUser.innerHTML = "Unavailable!"
+    }
 });
 
+//validate the email on check button click
 checkEmail.addEventListener("click", () => {
-    //todo: validate email format
-    fetch('http://localhost:8080/checkEmail/?email=' + email.value)
-        .then((response) => {
-            response.json()
-                .then((data) => {
-                    if (!data.exists) {
-                        validEmail.innerHTML = "Available!"
-                    } else{
-                        validEmail.innerHTML = "Unavailable!"
-                    }
-                });
-        });
+    if (validateEmail()) {
+        validEmail.innerHTML = "Available!"
+    } else{
+        validEmail.innerHTML = "Unavailable!"
+    }
 });
-//eventually asyncronously check the password as valid
+
+checkPass.addEventListener("click", () => {
+    if(validatePassword()) {
+        validPass.innerHTML = "Available!"
+    } else {
+        validPass.innerHTML = "Unavailable!";
+    }
+})
+
+form.onsubmit(() => {
+    //vallidate the user, email, pass, send the data to the server
+    if(validateEmail() && validateUser() && validatePassword()){
+        //
+    }
+})
