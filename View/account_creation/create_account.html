@@ -6,10 +6,11 @@
 </head>
 
 <body>
+    <div id="main content">
     <h1>Create Account</h1>
     <form id="account info">
         <label for="username">Username:</lable>
-        <input type="text" id="username" name="username" pattern=[0-9a-zA-Z] required="required">
+        <input type="text" id="username" name="username" pattern="[0-9a-zA-Z]+" required="required">
         <input type="button" id="check user" value="Check Availability">
         <label for="check user" id="valid user"></label>
         <br>
@@ -26,6 +27,7 @@
         <input type="submit" name="submit" id="submit" value="submit">
     </form>
     <script src="create_account.js"></script>
+    </div>
 </body>
 
 </html>

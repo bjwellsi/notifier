@@ -11,59 +11,97 @@ const validPass = document.getElementById("valid pass");
 
 //eventually check the password as valid
 //check the username and email as valid 
-function unique(field, fieldName){
-    fetch(`http://localhost:8080/check${fieldName}/?${fieldName}=${field.value}`)
+function unique(field, fieldName) {
+    return fetch(`http://localhost:8080/check${fieldName}/?${fieldName}=${field.value}`)
         .then((response) => {
-            response.json()
+            return response.json()
                 .then((data) => {
                     return !data.exists;
                 });
         });
 }
 
-function validateUser(){
-    return unique(user, "user");
+async function validateUser() {
+    return await unique(user, "user");;
 }
 
-function validateEmail(){
+async function validateEmail() {
     //todo: validate email format
-    return unique(email, "email");
+    return await unique(email, "email");
 }
 
-function validatePassword(){
+function validatePassword() {
     //todo, fill in
     return true;
 }
 
-//validate the user on check button click
-checkUser.addEventListener("click", () => {
-    if (validateUser()) {
-        validUser.innerHTML = "Available!"
-    } else{
+async function validateAll() {
+    //I know this is syncronous when it maybe shouldn't be, 
+    //but that allows me to display what value is invalid,
+    //instead of just saying user, email, or password invalid
+    let valid = true;
+    if (!await validateUser()) {
+        valid = false;
         validUser.innerHTML = "Unavailable!"
     }
+    if (!await validateEmail()) {
+        valid = false;
+        validEmail.innerHTML = "Unavailable!"
+    }
+    if (!await validatePassword()) {
+        valid = false;
+        validPass.innerHTML = "Unavailable!"
+    }
+    return valid;
+}
+
+//validate the user on check button click
+checkUser.addEventListener("click", () => {
+    validateUser().then((ret) => {
+        if (ret) {
+            validUser.innerHTML = "Available!"
+        } else {
+            validUser.innerHTML = "Unavailable!"
+        }
+    })
 });
 
 //validate the email on check button click
 checkEmail.addEventListener("click", () => {
-    if (validateEmail()) {
-        validEmail.innerHTML = "Available!"
-    } else{
-        validEmail.innerHTML = "Unavailable!"
-    }
+    validateEmail().then((ret) => {
+        if (ret) {
+            validEmail.innerHTML = "Available!"
+        } else {
+            validEmail.innerHTML = "Unavailable!"
+        }
+    })
 });
 
 checkPass.addEventListener("click", () => {
-    if(validatePassword()) {
+    if (validatePassword()) {
         validPass.innerHTML = "Available!"
     } else {
         validPass.innerHTML = "Unavailable!";
     }
 })
 
-form.onsubmit(() => {
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
     //vallidate the user, email, pass, send the data to the server
-    if(validateEmail() && validateUser() && validatePassword()){
-        //
-    }
+    validateAll().then((ret) => {
+        if (ret) {
+            //todo send the form
+            console.log("valid form")
+            let userData = user.value;
+            let emailData = email.value;
+            let passData = pass.value;
+
+        } else {
+            //reject
+            let para = document.createElement('p');
+            let node = document.createTextNode('Please enter valid data!');
+            para.appendChild(node);
+            document.getElementById("main content").appendChild(para);
+        }
+    })
 })
