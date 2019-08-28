@@ -53,6 +53,25 @@ app.get('/checkemail', async (req, res) => {
     }
 })
 
+app.get('/quotes', async (req, res) => {
+    let qc = new queries();
+    try {
+        const results = await qc.getQuotes(req.query.user)
+        qc.close()
+        let ret = results.map((row) => {
+            return {
+                quote: row.quote,
+                author: row.author,
+                qid: row.qid
+            }
+        });
+        return res.send({ret})
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})
+
 app.listen(8080, () => {
     console.log('Listening on 8080...');
 })
