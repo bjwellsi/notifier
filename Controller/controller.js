@@ -72,6 +72,20 @@ app.get('/quotes', async (req, res) => {
     }
 })
 
+app.get('/addQuote', async (req, res) => {
+    let qc = new queries();
+    try{
+        //this should change to post so you can have spaces and such
+        const results = await qc.addQuote(req.query.user, req.query.quote, req.query.author);
+        qc.close();
+        if(results) return res.send({succeeded: "true"});
+             else return res.send({succeeded: "false"});
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})
+
 app.listen(8080, () => {
     console.log('Listening on 8080...');
 })

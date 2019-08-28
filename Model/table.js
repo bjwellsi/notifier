@@ -47,7 +47,7 @@ class TableQuerys {
         });
     }
 
-    async exists(field, value, table) {
+    exists(field, value, table) {
         try {
             let inserts = ['*', table, field, value];
             return new Promise((res, rej) => {
@@ -84,12 +84,30 @@ class TableQuerys {
     }
 
     addQuote(username, quote, author) {
-        let inserts = `INSERT INTO quotes (username, quote, author) VALUES ('${username}', '${quote}', '${author}');`;
-        this.connection.query(inserts, (err) => {
-            if (err) throw err;
-            console.log(results);
-        })
+        let quer = `INSERT INTO quotes (username, quote, author) VALUES ('${username}', '${quote}', '${author}');`;
+        try {
+            return new Promise((res, rej) => {
+                this.connection.query(quer, (err, results) => {
+                    if (err) rej(err);
+                    res(results);
+                })
+            }).then(data => {
+                return data.affectedRows > 0;
+            }).catch (err => {
+                return false;
+            })
+        } catch (err) {
+            throw err;
+        }
     }
 }
+
+/*let qc = new TableQuerys();
+qc.addQuote('e', 'Boggodsdflo', 'persdfsony').then((data) => {
+    console.log(data);
+    qc.close();
+})
+*/
+
 
 module.exports = TableQuerys;
