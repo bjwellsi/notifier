@@ -16,17 +16,15 @@ $(document).ready(function () {
                 return res.json()
             }).then((data) => {
                 const quotesDiv = $('#quote_selection');
-                let list = quotesDiv.add('ol')
+                const list = document.createElement('ol');
                 let i = 0;
                 let ret = data.ret.map(row => {
-                    let line = list.add('li');
-                    line.text(`"${row.quote}" -${row.author}`);
-                    line.value(row.qid);
-                    /*row.listLine = i;
+                    let line = document.createElement('li');
+                    row.listLine = i;
                     i++;
                     let lineData = document.createTextNode(`"${row.quote}" -${row.author}`);
                     line.append(lineData);
-                    list.append(line);*/
+                    list.append(line);
                 });
                 //todo make sure ret is getting initialized
                 quotesDiv.append(list);
