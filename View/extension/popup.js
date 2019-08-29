@@ -9,12 +9,13 @@ $(document).ready(function () {
 
     let listQuotes = $('#list_quotes');
     $(listQuotes).on("click", () => {
-        $('#remove_quotes').show()
+        //$('#remove_quotes').show()
         //this url will eventually need to include the signed in user
         fetch('http://localhost:8080/quotes/?user=me')
             .then((res) => {
                 return res.json()
             }).then((data) => {
+                removeQuoteList();
                 let list = $('#quote_list');
                 data.ret.forEach(row => {
                     list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" -' + row.author + '<button class="remove_quote">Remove Quote</button></li>');
@@ -36,8 +37,7 @@ $(document).ready(function () {
                 }).then((data) => {
                     if (data.succeeded) {
                         //then:
-                        removeQuoteList();
-
+                        $(event.currentTarget).remove();
                         //then:
                         //relist the quotes:
                         //should build an actual method to do this
@@ -49,6 +49,7 @@ $(document).ready(function () {
 
     function removeQuoteList() {
         //remove the quote list before redisplaying
+        $('#quote_list').empty();
     }
 
     let addQuote = $('#add_quote');
