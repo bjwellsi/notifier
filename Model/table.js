@@ -93,7 +93,25 @@ class TableQuerys {
                 })
             }).then(data => {
                 return data.affectedRows > 0;
-            }).catch (err => {
+            }).catch(err => {
+                return false;
+            })
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    removeQuote(qid, username) {
+        let quer = `DELETE FROM quotes WHERE qid = '${qid}' AND username = '${username}';`;
+        try {
+            return new Promise((res, rej) => {
+                this.connection.query(quer, (err, results) => {
+                    if (err) rej(err);
+                    res(results);
+                })
+            }).then(data => {
+                return data.affectedRows > 0;
+            }).catch(err => {
                 return false;
             })
         } catch (err) {
