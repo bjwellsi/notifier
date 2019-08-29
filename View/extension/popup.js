@@ -17,7 +17,7 @@ $(document).ready(function () {
             }).then((data) => {
                 let list = $('#quote_list');
                 data.ret.forEach(row => {
-                    list.append('<li class="quote" value="' + row.qid + '">"' + row.quote + '" -' + row.author + '<button class="remove_quote">Remove Quote</button></li>');
+                    list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" -' + row.author + '<button class="remove_quote">Remove Quote</button></li>');
                 });
                 //$('#remove_quote').css({ 'visibility': 'visible' })
                 //todo make sure ret is getting initialized
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
     function listenForQuoteDelete() {
         $('.quote').on('click', (event) => {
-            let qidToRemove = $(event.currentTarget).val();
+            let qidToRemove = $(event.currentTarget).attr('name');
             //remove qid from the list of quotes and the db
             let username = 'me'; //for now
             fetch('http://localhost:8080/removeQuote/?user=me&qid=' + qidToRemove)
