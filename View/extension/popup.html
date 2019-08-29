@@ -3,6 +3,7 @@
 
 <head>
   <title>Popup</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
@@ -18,12 +19,11 @@
     <input type="text" id="author">
     <button id="add_quote">Add Quote</button>
     <p id="after_add_quote"></p>
-    <br>
-    <input type="text" id="quote_to_remove">
-    <button id="remove_quote">Remove Quote</button>
-    <p id="after_remove_quote"></p>
+
     <br>
     <button id="list_quotes">List Quotes</button>
+    <ol id="quote_list"></ol>
+    <button id="remove_quote" visibility="hidden">Remove Quote</button>
   </div>
 
   <div id="scripts">
