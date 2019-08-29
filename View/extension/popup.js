@@ -10,22 +10,23 @@ $(document).ready(function () {
     let listQuotes = $('#list_quotes');
     console.log($(listQuotes).val())
     $(listQuotes).on("click", () => {
-        console.log('uhh')
         //this url will eventually need to include the signed in user
         fetch('http://localhost:8080/quotes/?user=me')
             .then((res) => {
                 return res.json()
             }).then((data) => {
                 const quotesDiv = $('#quote_selection');
-                const list = document.createElement('ol');
+                let list = quotesDiv.add('ol')
                 let i = 0;
                 let ret = data.ret.map(row => {
-                    let line = document.createElement('li');
-                    row.listLine = i;
+                    let line = list.add('li');
+                    line.text(`"${row.quote}" -${row.author}`);
+                    line.value(row.qid);
+                    /*row.listLine = i;
                     i++;
                     let lineData = document.createTextNode(`"${row.quote}" -${row.author}`);
                     line.append(lineData);
-                    list.append(line);
+                    list.append(line);*/
                 });
                 //todo make sure ret is getting initialized
                 quotesDiv.append(list);
