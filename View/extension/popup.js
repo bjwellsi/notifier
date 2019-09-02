@@ -1,29 +1,15 @@
 $(document).ready(function () {
-    let timer = $('#change_timer_button');
     let amount = $('#timer');
 
-    timer.on("click", () => {
-        chrome.storage.sync.set({ timer: amount.value })
-
+    $('#change_timer_button').on("click", () => {
+        //todo change format so this is either minutes or seconds
+        chrome.storage.sync.set({ 'timer': amount[0].value })
+        //display that the interval has changed:
+        
     });
-
     let listQuotes = $('#list_quotes');
     $(listQuotes).on("click", () => {
-        //$('#remove_quotes').show()
-        //this url will eventually need to include the signed in user
-        fetch('http://localhost:8080/quotes/?user=me')
-            .then((res) => {
-                return res.json()
-            }).then((data) => {
-                removeQuoteList();
-                let list = $('#quote_list');
-                data.ret.forEach(row => {
-                    list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" -' + row.author + '<button class="remove_quote">Remove Quote</button></li>');
-                });
-                //$('#remove_quote').css({ 'visibility': 'visible' })
-                //todo make sure ret is getting initialized
-                listenForQuoteDelete()
-            })
+        listTheQuotes();
     })
 
     function listenForQuoteDelete() {
@@ -47,11 +33,6 @@ $(document).ready(function () {
         })
     }
 
-    function removeQuoteList() {
-        //remove the quote list before redisplaying
-        $('#quote_list').empty();
-    }
-
     let addQuote = $('#add_quote');
     addQuote.on('click', () => {
         //use the fetch url to add a member
@@ -64,9 +45,26 @@ $(document).ready(function () {
                 return res.json()
             }).then(data => {
                 let para = $('#after_add_quote');
-                if (data.succeeded == "true") para.text("Success!");
-                else para.text("Failed!")
-                console.log(data)
+                if (data.succeeded != "true") para.text("Failed!")
+                listTheQuotes();
             })
     })
+
+    function listTheQuotes() {
+        //$('#remove_quotes').show()
+        //this url will eventually need to include the signed in user
+        fetch('http://localhost:8080/quotes/?user=me')
+            .then((res) => {
+                return res.json()
+            }).then((data) => {
+                $('#quote_list').empty();//to refresh the quote list
+                let list = $('#quote_list');
+                data.ret.forEach(row => {
+                    list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" -' + row.author + '<button class="remove_quote">Remove Quote</button></li>');
+                });
+                //$('#remove_quote').css({ 'visibility': 'visible' })
+                //todo make sure ret is getting initialized
+                listenForQuoteDelete()
+            })
+    }
 });
