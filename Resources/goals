@@ -1,0 +1,35 @@
+Highest goals right now, to get to point that testing is available: 8, then 4, then 1
+
+1 make the program look presentable
+	-learn css
+	-implement css on pages
+	-create websites for online management of quotes
+2 allow mobile functionality
+	-learn mobile development
+	-set up testing environment
+	-port to mobile
+3 implement quote sharing features
+	-create quote groups
+	-adjust db so that it allows for quote groups
+	-adjust db so that quote groups can be public
+4 get the app to a point that it can begin testing
+	-requires accounts
+	-requires setting up server, likely aws
+	-talk to korrin, eli, friends, kayla
+	-test it myself
+	-learn how to pack the extension
+5 get the app to a point that it can be deployed
+	-requires testing bullet point
+	-requires accounts
+	-requires setting up aws
+	-requires hosting webpage
+6 refactor and develop tests for maintainability
+	-requires learning mocha
+	-requires learning some sort of CI for github
+	-requires 
+7 add extra features
+8 implement accounts
+	-learn auth0
+	-figure out how signin works on web apps
+		-I'd ask Darin
+	-create different accounts on mysql db

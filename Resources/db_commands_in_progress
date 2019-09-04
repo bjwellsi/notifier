@@ -1,0 +1,24 @@
+CREATE TABLE users (
+username VARCHAR(255) UNIQUE NOT NULL,
+email VARCHAR(255) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+Primary Key(username)
+) ENGINE=INNODB;
+
+CREATE TABLE quotes (
+gid INT NOT NULL,
+qid INT UNIQUE NOT NULL AUTO_INCREMENT,
+quote VARCHAR(255) NOT NULL,
+author VARCHAR(255),
+Primary Key(qid, gid),
+Foreign Key(gid) REFERENCES quote_groups(gid)
+) ENGINE=INNODB;
+
+CREATE TABLE quote_groups (
+name VARCHAR(255) NOT NULL,
+gid INT UNIQUE NOT NULL AUTO_INCREMENT,
+owner_username VARCHAR(255) NOT NULL, 
+private BOOL NOT NULL, 
+Primary Key(gid),
+Foreign Key(owner_username) REFERENCES users(username)
+) ENGINE=INNODB;

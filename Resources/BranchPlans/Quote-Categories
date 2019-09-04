@@ -1,0 +1,8 @@
+This won't exactly be organized or whatever, just a collection of my thoughts for when this merges.
+Basically the goal of this branch is to allow quote categories to exist on the backend. They don't actually need to be implemented yet, just basically this should result in:
+* all quotes having a category in the DB
+* the controller setting the quote category when the quotes are added 
+* the quotes having a default category of username-quotes
+* removal of a username resulting in all owned private quotes disappearing 
+
+Basically the only things that need to change are the table controller, the values sent to it, and the database schema
