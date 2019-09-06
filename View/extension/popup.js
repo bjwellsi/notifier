@@ -5,12 +5,18 @@ $(document).ready(function () {
         //todo change format so this is either minutes or seconds
         chrome.storage.sync.set({ 'timer': amount[0].value })
         //display that the interval has changed:
-        
+
     });
     let listQuotes = $('#list_quotes');
     $(listQuotes).on("click", () => {
         listTheQuotes();
     })
+
+    /*$("#test_auth").on('click', () => {
+        fetch('http://localhost:3000').then(res => {
+            console.log(res);
+        })
+    })*/
 
     function listenForQuoteDelete() {
         $('.quote').on('click', (event) => {

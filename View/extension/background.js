@@ -33,9 +33,7 @@ let theVal;
 async function display() {
 
   //eventually want this to worker, get interval from storage
-  /*chrome.storage.sync.get('timer', (data) =>{
-    interval = data.timer;
-  })*/
+
   let interval = await getTimer();
 
   theVal = setInterval(() => {
@@ -54,5 +52,5 @@ async function display() {
         });
       });
     });
-  }, await interval)
+  }, interval)
 }
