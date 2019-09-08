@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     $('#change_timer_button').on("click", () => {
         //todo change format so this is either minutes or seconds
+        console.log(amount[0].value)
         chrome.storage.sync.set({ 'timer': amount[0].value })
             //display that the interval has changed:
 
