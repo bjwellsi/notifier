@@ -7,12 +7,20 @@
     --tertiary-color: #FFFFFF;
 }
 
-textarea {
+textarea, select {
     border: 1px solid rgb(175, 175, 175);
     border-radius: 5px;
     width: 95%;
     box-shadow: 0 0 2px 2px #ccc;
     margin: 3px;
+}
+
+#number {
+    max-width: 13%;
+}
+
+select {
+    max-width: 30%;
 }
 
 button,

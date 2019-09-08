@@ -2,22 +2,32 @@
 <html>
 
 <head>
-  <title>Popup</title>
+
+  <title>Annoyer</title>
   <link rel="stylesheet" href="popup.css">
   <link rel="icon" href="images/annoyed128.png">
+
 </head>
 
 <body>
+
   <header>
     <h1><img src="images/annoyed16.png" id="icon"> Annoyer</h1>
     <img id="pause" src="images/unpause.png">
   </header>
+
   <div class="outer white">
     <div id="change_timer" class="center">
+      <input id="number" type="number" max="60" min="1">
+      <select>
+        <option name="hours" value="hours">Hours</option>
+        <option name="minutes" value="minutes">Minutes</option>
+      </select>
       <input type="text" id="timer">
       <button id="change_timer_button">Change timer</button>
     </div>
   </div>
+
   <div id="quote_selection" class="outer">
     <div class="center">
       <textarea rows="4" cols="20" id="quote_to_add" placeholder="Quote"></textarea>
@@ -28,17 +38,19 @@
       <p id="after_add_quote"></p>
     </div>
   </div>
+
   <div id="list_quotes_div">
     <button id="list_quotes" class="center">List Quotes</button>
   </div>
+
   <ul id="quote_list">
   </ul>
-
 
   <div id="scripts">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="popup.js"></script>
   </div>
+
 </body>
 
 </html>
