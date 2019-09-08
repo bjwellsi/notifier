@@ -1,10 +1,10 @@
-$(document).ready(function () {
+$(document).ready(function() {
     let amount = $('#timer');
 
     $('#change_timer_button').on("click", () => {
         //todo change format so this is either minutes or seconds
         chrome.storage.sync.set({ 'timer': amount[0].value })
-        //display that the interval has changed:
+            //display that the interval has changed:
 
     });
     let listQuotes = $('#list_quotes');
@@ -63,22 +63,14 @@ $(document).ready(function () {
             .then((res) => {
                 return res.json()
             }).then((data) => {
-                $('#quote_list').empty();//to refresh the quote list
+                $('#quote_list').empty(); //to refresh the quote list
                 let list = $('#quote_list');
                 data.ret.forEach(row => {
                     list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" <br>-' + row.author + '<br><button class="remove_quote">Remove Quote</button></li>');
                 });
                 //$('#remove_quote').css({ 'visibility': 'visible' })
                 //todo make sure ret is getting initialized
-                $('.quote').css({
-                    'max-width': '250px',
-                    'max-height': '150px',
-                    'overflow': 'auto',
-                })
-                $('.quote button').css({
-                    'color': 'red',
-                    'border': '2px solid red'
-                })
+
                 listenForQuoteDelete()
             })
     }
