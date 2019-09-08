@@ -3,7 +3,7 @@
     border: 2px;
     font-family: sans-serif;
     --main-color: #FFFFFF;
-    --secondary-color: rgb(214, 214, 214);
+    --secondary-color: rgb(241, 241, 241);
     --tertiary-color: #FFFFFF;
     
 }
@@ -11,6 +11,7 @@
 textarea {
     color: blue;
     border: 2px solid black;
+    border-radius: 5px;
 }
 
 button, input{
@@ -30,20 +31,22 @@ body {
 }
 
 h1 {
-    font-size: 25px;
+    font-size: 40px;
     text-align: center;
     font-family: sans-serif;    
 }
 
 .center{
-    max-width: 150px;
-    margin: 10px auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70%;
 }
 
 .outer {
     width: 100%;
     background: var(--secondary-color);
-    border-bottom: 2px solid black; 
+    border-bottom: 1px solid black; 
     border-top: 2px solid var(--secondary-color);
 
 }
@@ -68,4 +71,3 @@ label, input{
 .white {
     background: "white";
 }
-
