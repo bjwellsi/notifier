@@ -40,6 +40,12 @@ $(document).ready(function() {
     }
 
     let addQuote = $('#add_quote');
+    $('#quote_to_add').on('click', () => {
+        addQuote.css({
+            'display': 'block'
+        });
+    })
+
     addQuote.on('click', () => {
         //use the fetch url to add a member
         let quoteToAdd = $('#quote_to_add');

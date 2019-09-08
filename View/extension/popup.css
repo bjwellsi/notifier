@@ -8,6 +8,7 @@
 }
 
 textarea {
+    border: 1px solid rgb(175, 175, 175);
     border-radius: 5px;
     width: 95%;
     box-shadow: 0 0 2px 2px #ccc;
@@ -16,7 +17,7 @@ textarea {
 
 button,
 input {
-    border: 1px solid black;
+    border: 1px solid rgb(175, 175, 175);
     background: var(--tertiary-color);
     border-radius: 3px;
     box-shadow: 0 0 2px 2px #ccc;
@@ -33,13 +34,15 @@ body {
     border: 1px ridge gray;
 }
 
-#h1 {
+header {
     border-bottom: 2px clear gray;
 }
 
 h1 {
     font-size: 22px;
     text-align: left;
+    padding: 5px;
+    display: inline;
 }
 
 .center {
@@ -55,7 +58,6 @@ h1 {
     border-bottom: 1px solid black;
     border-top: 2px solid var(--secondary-color);
     padding: 10px 0;
-    ;
 }
 
 .white {
@@ -66,6 +68,10 @@ label,
 input {
     width: 150px;
     margin: 0, auto;
+}
+
+#add_quote {
+    display: none;
 }
 
 #after_add_quote {
@@ -106,4 +112,13 @@ ul {
 
 .quote button:hover {
     background-color: rgb(255, 0, 0);
+}
+
+#pause {
+    float: right; 
+    margin: 5px;
+}
+#pause:hover {
+    cursor: pointer;
+
 }
