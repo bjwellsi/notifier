@@ -4,26 +4,38 @@
 <head>
   <title>Popup</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="icon" href="images/annoyed128.png">
 </head>
 
 <body>
-  <h1>What would you like to do?</h1>
-  <div id="change_timer">
-    <input type="text" id="timer">
-    <button id="change_timer_button">Change timer</button>
+  <div id="h1">
+    <h1>Annoyer</h1>
   </div>
-  <div id="quote_selection">
-    <label for="quote_to_add">Quote:</label>
-    <input type="text" id="quote_to_add">
-    <label for="author">Author:</label>
-    <input type="text" id="author">
-    <button id="add_quote">Add Quote</button>
-    <p id="after_add_quote"></p>
+  <div class="outer white">
+    <div id="change_timer" class="center">
+      <input type="text" id="timer">
+      <button id="change_timer_button">Change timer</button>
+    </div>
+  </div>
+  <div id="quote_selection" class="outer">
+    <div class="center">
+      <textarea rows="4" cols="20" id="quote_to_add" value="quote">
+        </textarea>
+      <br>
+      <label for="author">Author:</label>
+      <textarea id="author" value="author">
+        </textarea>
+      <br>
+      <button id="add_quote">Add Quote</button>
+      <p id="after_add_quote"></p>
+    </div>
+  </div>
+  <div id="list_quotes_div" class="center">
+    <button id="list_quotes" class="center">List Quotes</button>
+  </div>
+  <ul id="quote_list">
+  </ul>
 
-    <br>
-    <button id="list_quotes">List Quotes</button>
-    <ol id="quote_list"></ol>
-  </div>
 
   <div id="scripts">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

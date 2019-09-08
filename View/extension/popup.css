@@ -1,4 +1,71 @@
-#remove_quote {
-    visibility: hidden
+* {
+    margin: 0;
+    border: 2px;
+    font-family: sans-serif;
+    --main-color: #FFFFFF;
+    --secondary-color: rgb(214, 214, 214);
+    --tertiary-color: #FFFFFF;
+    
+}
+
+textarea {
+    color: blue;
+    border: 2px solid black;
+}
+
+button, input{
+    border: 1px solid black;
+    background: var(--tertiary-color);
+    border-radius: 3px;
+}
+
+body {
+    background: var(--main-color);
+    width: 250px; 
+    border: 1px ridge gray;
+}
+
+#h1 {
+    border-bottom: 2px clear gray; 
+}
+
+h1 {
+    font-size: 25px;
+    text-align: center;
+    font-family: sans-serif;    
+}
+
+.center{
+    max-width: 150px;
+    margin: 10px auto;
+}
+
+.outer {
+    width: 100%;
+    background: var(--secondary-color);
+    border-bottom: 2px solid black; 
+    border-top: 2px solid var(--secondary-color);
+
+}
+
+.white {
+    background: white;
+}
+
+label, input{ 
+    width: 150px;
+    margin: 0, auto;
+}
+
+#after_add_quote {
+    display: none;
+}
+
+#quote_list {
+    padding: 10px;
+}
+
+.white {
+    background: "white";
 }
 

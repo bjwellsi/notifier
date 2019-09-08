@@ -66,10 +66,19 @@ $(document).ready(function () {
                 $('#quote_list').empty();//to refresh the quote list
                 let list = $('#quote_list');
                 data.ret.forEach(row => {
-                    list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" -' + row.author + '<button class="remove_quote">Remove Quote</button></li>');
+                    list.append('<li class="quote" name="' + row.qid + '">"' + row.quote + '" -' + row.author + '<br><button class="remove_quote">Remove Quote</button></li>');
                 });
                 //$('#remove_quote').css({ 'visibility': 'visible' })
                 //todo make sure ret is getting initialized
+                $('.quote').css({
+                    'max-width': '250px',
+                    'max-height': '150px',
+                    'overflow': 'auto',
+                })
+                $('.quote button').css({
+                    'color': 'red',
+                    'border': '2px solid red'
+                })
                 listenForQuoteDelete()
             })
     }
