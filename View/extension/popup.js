@@ -1,18 +1,12 @@
-window.onload = function() {
-    $('#login').on('click', function () {
-        /*chrome.identity.getAuthToken({ interactive: true }, function (token) {
-            console.log(token);
-        });*/
-
-        chrome.identity.getProfileUserInfo(function(userInfo){
-            console.log(userInfo.id)
-        })
-    });
-    };
-
 $(document).ready(function () {
-    let amount = $('#number');
+    
+    let identiy;
+    chrome.identity.getProfileUserInfo(function(userInfo){
+        identity = userInfo.id;
+        console.log(identity)
+    });
 
+    let amount = $('#number');
     $('#change_timer_button').on("click", () => {
         //todo change format so this is either minutes or seconds
         let milis = amount[0].value;
@@ -43,8 +37,8 @@ $(document).ready(function () {
         $('.quote').on('click', (event) => {
             let qidToRemove = $(event.currentTarget).attr('name');
             //remove qid from the list of quotes and the db
-            let username = 'me'; //for now
-            fetch('http://localhost:8080/removeQuote/?user=me&qid=' + qidToRemove)
+            let username = identity; //for now
+            fetch('http://localhost:8080/removeQuote/?user=' + username + '&qid=' + qidToRemove)
                 .then((res) => {
                     return res.json()
                 }).then((data) => {
@@ -71,7 +65,7 @@ $(document).ready(function () {
         //use the fetch url to add a member
         let quoteToAdd = $('#quote_to_add');
         let author = $('#author');
-        let user = 'me';
+        let user = identity;
         //change this eventually
         fetch(`http://localhost:8080/addQuote/?user=${user}&quote=${quoteToAdd.val()}&author=${author.val()}`)
             .then(res => {
@@ -86,7 +80,7 @@ $(document).ready(function () {
     function listTheQuotes() {
         //$('#remove_quotes').show()
         //this url will eventually need to include the signed in user
-        fetch('http://localhost:8080/quotes/?user=me')
+        fetch('http://localhost:8080/quotes/?user=' + identity)
             .then((res) => {
                 return res.json()
             }).then((data) => {

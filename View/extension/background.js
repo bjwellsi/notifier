@@ -1,3 +1,8 @@
+let identiy;
+chrome.identity.getProfileUserInfo(function(userInfo){
+    identity = userInfo.id;
+});
+
 //check for notification support
 if (window.Notification) {
   display();
@@ -38,7 +43,7 @@ async function display() {
 
   theVal = setInterval(() => {
     //await a notification
-    fetch('http://localhost:8080/getQuote/?username=me').then((response) => {
+    fetch('http://localhost:8080/getQuote/?username=' + identity).then((response) => {
       response.json().then((data) => {
         //show the notification
           chrome.notifications.create('Quote', {
