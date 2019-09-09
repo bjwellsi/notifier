@@ -1,18 +1,37 @@
 let identiy;
-chrome.identity.getProfileUserInfo(function(userInfo){
+let email;
+let pass;
+let theVal;
+new Promise((res) => {
+  chrome.identity.getProfileUserInfo(function (userInfo) {
     identity = userInfo.id;
+    email = userInfo.email;
+    pass = 'pass';
+    res()
+  })
+}).then(() => {
+  //check for existence of user profile
+  fetch(`http://localhost:8080/userExists/?user=${identity}&email=${email}&pass=${pass}`).then(() => {
+    console.log('done');
+    //check for notification support
+    if (window.Notification) {
+      display();
+    };
+    chrome.storage.onChanged.addListener(async () => {
+      clearInterval(theVal);
+      display();
+    })
+  })
 });
+//^the rest of the app should wait on this call
 
-//check for notification support
-if (window.Notification) {
-  display();
-};
+
 
 async function getTimer() {
   //todo reject with a default timer
   return new Promise((res, rej) => {
     chrome.storage.sync.get(['timer'], (timerData) => {
-      if(!timerData.timer){
+      if (!timerData.timer) {
         rej()
       }
       else {
@@ -28,13 +47,6 @@ async function getTimer() {
   })
 }
 
-chrome.storage.onChanged.addListener( async () => {
-  clearInterval(theVal);
-  display();
-})
-
-let theVal;
-
 async function display() {
 
   //eventually want this to worker, get interval from storage
@@ -43,10 +55,10 @@ async function display() {
 
   theVal = setInterval(() => {
     //await a notification
-    fetch('http://localhost:8080/getQuote/?username=' + identity).then((response) => {
+    fetch('http://localhost:8080/getQuote/?user=' + identity).then((response) => {
       response.json().then((data) => {
         //show the notification
-          chrome.notifications.create('Quote', {
+        chrome.notifications.create('Quote', {
           type: 'basic',
           iconUrl: 'images/annoyed16.png',
           message: data.quote,

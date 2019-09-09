@@ -12,7 +12,7 @@ app.get('/getQuote', async (req, res) => {
     //quotes that haven't been said in a minute
     let qc = new queries();
     try {
-        const results = await qc.getQuotes(req.query.username);
+        const results = await qc.getQuotes(req.query.user);
         qc.close();
         let r = Math.floor(Math.random() * results.length);
         return res.send(
@@ -27,47 +27,23 @@ app.get('/getQuote', async (req, res) => {
     }
 })
 
-app.get('/checkuser', async (req, res) => {
-    //validates the username for account creation
+app.get('/userExists', async (req, res) => {
+    //checks whether a user has used the app before
     let qc = new queries();
     try {
         const results = await qc.userExists(req.query.user);
-        qc.close();
-        return res.send({ exists: results });
+        if (!results) {
+            qc.createUser(req.query.user, req.query.email, req.query.pass).then(() => {
+                qc.close();
+                return res.send({ success: 'true' });
+            });
+        }
+        else {
+            qc.close()
+            return res.send({ success: 'false' });
+        };
     } catch (err) {
-        qc.close();
-        console.log(err);
-    }
-})
-
-app.get('/checkemail', async (req, res) => {
-    //validates the username for account creation
-    let qc = new queries();
-    try {
-        const results = await qc.emailExists(req.query.email);
-        qc.close();
-        return res.send({ exists: results });
-    } catch (err) {
-        qc.close();
-        console.log(err);
-    }
-})
-
-app.get('/quotes', async (req, res) => {
-    let qc = new queries();
-    try {
-        const results = await qc.getQuotes(req.query.user)
         qc.close()
-        let ret = results.map((row) => {
-            return {
-                quote: row.quote,
-                author: row.author,
-                qid: row.qid
-            }
-        });
-        return res.send({ ret })
-    } catch (err) {
-        qc.close();
         console.log(err);
     }
 })
@@ -100,8 +76,51 @@ app.get('/removeQuote', async (req, res) => {
     }
 })
 
+app.get('/quotes', async (req, res) => {
+    let qc = new queries();
+    try {
+        const results = await qc.getQuotes(req.query.user)
+        qc.close()
+        let ret = results.map((row) => {
+            return {
+                quote: row.quote,
+                author: row.author,
+                qid: row.qid
+            }
+        });
+        return res.send({ ret })
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})
+
 app.listen(8080, () => {
     console.log('Listening on 8080...');
 })
 
+/*app.get('/checkuser', async (req, res) => {
+    //validates the username for account creation
+    let qc = new queries();
+    try {
+        const results = await qc.userExists(req.query.user);
+        qc.close();
+        return res.send({ exists: results });
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})
 
+app.get('/checkemail', async (req, res) => {
+    //validates the username for account creation
+    let qc = new queries();
+    try {
+        const results = await qc.emailExists(req.query.email);
+        qc.close();
+        return res.send({ exists: results });
+    } catch (err) {
+        qc.close();
+        console.log(err);
+    }
+})*/

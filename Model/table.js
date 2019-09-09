@@ -77,7 +77,8 @@ class TableQuerys {
 
     createUser(username, email, password) {
         let inserts = ['users', 'username, email, password', `'${username}', '${email}', '${password}'`];
-        this.connection.query(mysql.format(this.add, inserts), (err, results) => {
+        let quer = `INSERT INTO users (username, email, password) VALUES ('${username}', '${email}', '${password}');`;
+        this.connection.query(quer, (err, results) => {
             if (err) throw err;
             console.log(results);
         });
