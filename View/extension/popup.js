@@ -11,9 +11,11 @@ $(document).ready(function () {
         //todo change format so this is either minutes or seconds
         let milis = amount[0].value;
         console.log(milis)
-        let time = milis * 60000;
-        if ($('#time_unit')[0].value == 'hours') {
+        let time = milis * 1000;
+        if ($('#time_unit')[0].value == 'minutes') {
             time *= 60;
+        } else if (('$time_unit')[0].value == 'hours') {
+            time *= 360;
         }
         chrome.storage.sync.set({ 'timer': time })
 
