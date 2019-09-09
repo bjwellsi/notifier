@@ -5,7 +5,8 @@
     "permissions": [
                     "notifications", 
                     "storage",
-                    "identity"
+                    "identity", 
+                    "identity.email"
                   ],
     "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
     "background": {
@@ -26,19 +27,6 @@
       "32": "images/annoyed32.png",
       "64": "images/annoyed64.png",
       "128": "images/annoyed128.png"
-    },
-    "key": "-----BEGIN PUBLIC KEY-----
-    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnOuJrunn1fd2wFgLIWKT
-    4/xWQFlARoB7yreQuU3gZr0gmQqpxojKWkK4MM2zdEZJIREXeoA5X5DEJr80Deho
-    LuOuuhSJvQFEE+uhPB1+GHeLAz2qtko/YQd4JiKP0ubC+zNtOpYNW58rWvnZvowN
-    wZCO7q7sO9njL4AbVXiluY1i7oFwjzP/z120gnq2/3fEEERRZ4ErGpwyV4FRO1R0
-    LZ8UxO5CdzFYsLRGyylZSkDIEK8M8fmTymfIhaA2xe5EI+IpfQt9DF4hi7V1jxuf
-    38X5HhNq+utOGeZBpWQKU/E204l/BqBXQZFnp0nvSvlUMijqUsqPrjPiwWD54+ky
-    1QIDAQAB
-    -----END PUBLIC KEY-----",
-    "oauth2": {
-      "client_id": "373078744211-1vcur28eecech2vk4nh1oveh364t24sc.apps.googleusercontent.com",
-      "scopes":["profile"]
     },
     "manifest_version": 2
   }

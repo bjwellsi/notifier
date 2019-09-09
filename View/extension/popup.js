@@ -1,8 +1,12 @@
 window.onload = function() {
     $('#login').on('click', function () {
-        chrome.identity.getAuthToken({ interactive: true }, function (token) {
+        /*chrome.identity.getAuthToken({ interactive: true }, function (token) {
             console.log(token);
-        });
+        });*/
+
+        chrome.identity.getProfileUserInfo(function(userInfo){
+            console.log(userInfo.id)
+        })
     });
     };
 
