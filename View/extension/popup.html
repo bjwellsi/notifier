@@ -6,6 +6,7 @@
   <title>Annoyer</title>
   <link rel="stylesheet" href="popup.css">
   <link rel="icon" href="images/annoyed128.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -16,9 +17,11 @@
     <img id="pause" src="images/unpause.png">
   </header>
 
-  <div class="outer white">
+  <div class="outer">
+
+    <button id="login">login</button>
     <div id="change_timer" class="center">
-      <input id="number" type="number" max="60" min="1">
+      <input id="number" type="number" max="60" min="1" value="5">
       <select id="time_unit">
         <option name="minutes" value="minutes">Minutes</option>
         <option name="hours" value="hours">Hours</option>
@@ -44,6 +47,10 @@
 
   <ul id="quote_list">
   </ul>
+
+  <footer>
+    <p>Mobile coming soon! </p>
+  </footer>
 
   <div id="scripts">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -1,21 +1,29 @@
-$(document).ready(function() {
+window.onload = function() {
+    $('#login').on('click', function () {
+        chrome.identity.getAuthToken({ interactive: true }, function (token) {
+            console.log(token);
+        });
+    });
+    };
+
+$(document).ready(function () {
     let amount = $('#number');
 
     $('#change_timer_button').on("click", () => {
         //todo change format so this is either minutes or seconds
         let milis = amount[0].value;
         console.log(milis)
-        let time = milis*60000;
-        if($('#time_unit')[0].value == 'hours'){
+        let time = milis * 60000;
+        if ($('#time_unit')[0].value == 'hours') {
             time *= 60;
         }
         chrome.storage.sync.set({ 'timer': time })
-        
+
         //chrome.storage.sync.set({ 'timer': amount[0].value })
-            //display that the interval has changed:
+        //display that the interval has changed:
 
     });
-    
+
     let listQuotes = $('#list_quotes');
     $(listQuotes).on("click", () => {
         listTheQuotes();
