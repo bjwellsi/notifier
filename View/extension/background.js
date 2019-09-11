@@ -26,7 +26,6 @@ new Promise((res) => {
 //^the rest of the app should wait on this call
 
 
-
 async function getTimer() {
   //todo reject with a default timer
   return new Promise((res, rej) => {
@@ -55,8 +54,10 @@ async function display() {
 
   theVal = setInterval(() => {
     //await a notification
-    fetch('http://localhost:8080/getQuote/?user=' + identity).then((response) => {
-      response.json().then((data) => {
+    fetch('http://localhost:8080/getQuote/?user=' + identity)
+      .then((response) => {
+        return response.json();
+      }).then((data) => {
         //show the notification
         chrome.notifications.create('Quote', {
           type: 'basic',
@@ -65,6 +66,5 @@ async function display() {
           title: data.author
         });
       });
-    });
-  }, interval)
+  }, interval);
 }

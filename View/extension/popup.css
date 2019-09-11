@@ -7,35 +7,6 @@
     --tertiary-color: #FFFFFF;
 }
 
-textarea, select {
-    border: 1px solid rgb(175, 175, 175);
-    border-radius: 5px;
-    width: 95%;
-    box-shadow: 0 0 2px 2px #ccc;
-    margin: 3px;
-}
-
-#number {
-    max-width: 13%;
-}
-
-select {
-    max-width: 30%;
-}
-
-button,
-input {
-    border: 1px solid rgb(175, 175, 175);
-    background: var(--tertiary-color);
-    border-radius: 3px;
-    box-shadow: 0 0 2px 2px #ccc;
-}
-
-button:hover {
-    cursor: pointer;
-    background-color: rgb(223, 223, 223);
-}
-
 body {
     background: var(--main-color);
     width: 250px;
@@ -51,6 +22,49 @@ h1 {
     text-align: left;
     padding: 5px;
     display: inline;
+}
+
+button,
+input {
+    border: 1px solid rgb(175, 175, 175);
+    background: var(--tertiary-color);
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px #ccc;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(223, 223, 223);
+}
+
+label,
+input {
+    width: 150px;
+    margin: 0, auto;
+}
+
+textarea, select {
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 5px;
+    width: 95%;
+    box-shadow: 0 0 2px 2px #ccc;
+    margin: 3px;
+}
+
+select {
+    max-width: 30%;
+}
+
+ul {
+    list-style-type: square;
+}
+
+footer p {
+    margin: 5px;
+}
+
+footer {
+    border-top: 1px solid gray;
 }
 
 .center {
@@ -70,36 +84,6 @@ h1 {
 
 .white {
     background: white;
-}
-
-label,
-input {
-    width: 150px;
-    margin: 0, auto;
-}
-
-#add_quote {
-    display: none;
-}
-
-#after_add_quote {
-    display: none;
-}
-
-#quote_list {
-    padding: 10px;
-}
-
-.white {
-    background: "white";
-}
-
-ul {
-    list-style-type: square;
-}
-
-#list_quotes {
-    margin: 20px auto;
 }
 
 .quote {
@@ -127,14 +111,22 @@ ul {
     margin: 5px;
 }
 
-#pause:hover {
+#pause:hover, select:hover {
     cursor: pointer;
 }
 
-footer p {
-    margin: 5px;
+#number {
+    max-width: 13%;
 }
 
-footer {
-    border-top: 1px solid gray;
+#add_quote, #after_add_quote {
+    display: none;
+}
+
+#list_quotes {
+    margin: 20px auto;
+}
+
+#quote_list {
+    padding: 10px;
 }
