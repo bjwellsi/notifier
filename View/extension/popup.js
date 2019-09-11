@@ -1,3 +1,5 @@
+//todo make the pause button retain its paused state when clicked away
+
 $(document).ready(function () {
     $('#body').hide();
     $('#body').slideDown(500);
