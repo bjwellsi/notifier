@@ -11,10 +11,11 @@
 </head>
 
 <body>
+  <div id="body">
 
   <header>
     <h1><img src="images/annoyed16.png" id="icon"> Annoyer</h1>
-    <img id="pause" src="images/unpause.png">
+    <button id="pause" class="fa fa-pause gray"></button>
   </header>
 
   <div class="outer">
@@ -23,9 +24,9 @@
       <select id="time_unit">
         <option name="minutes" value="minutes">Minutes</option>
         <option name="hours" value="hours">Hours</option>
-        <option name="seconds" value="seconds">Seconds</option>
       </select>
       <button id="change_timer_button">Change interval</button>
+      <p id="changed" class="green">Changed!</p>
     </div>
   </div>
 
@@ -55,7 +56,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="popup.js"></script>
   </div>
-
+</div>
 </body>
 
 </html>
