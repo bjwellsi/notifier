@@ -3,9 +3,9 @@ let express = require('express');
 const app = express();
 let cors = require('cors');
 
-run();
+//run();
 
-function run() {
+exports.run = function run() {
     //allow cross origin resources
     app.use(cors());
 

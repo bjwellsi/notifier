@@ -1,3 +1,3 @@
-let controller = require(Controller/controller.js);
+const controller = require('./Controller/controller.js');
 
 controller.run();
