@@ -8,7 +8,7 @@ class TableQuerys {
         this.connection = mysql.createConnection({
             host: 'localhost',
             user: 'root',
-            password: 'RhQYdMm8fk',
+            password: '',
             database: 'annoyer'
         });
 
